@@ -29,7 +29,7 @@ public class RacingGame {
         List<Car> temp = new ArrayList<>();
         validateParticipants(participants);
         for (String name : participants.split(",")) {
-            temp.add(new Car(name));
+            temp.add(new Car(name.trim()));
         }
         return temp;
     }
