@@ -22,7 +22,7 @@ public class RacingGame {
 
     private List<Car> splitParticipants(String participants) {
         List<Car> temp = new ArrayList<>();
-        for(String name : participants.split(",")) {
+        for (String name : participants.split(",")) {
             temp.add(new Car(name));
         }
         return temp;
@@ -36,6 +36,12 @@ public class RacingGame {
     private void validateParticipants(String participants) {
         isBlank(participants);
         isLetter(participants);
+    }
+
+    public void playGame() {
+        for (int i = 0; i < rounds; i++) {
+            move();
+        }
     }
 
     public void move() {
