@@ -1,9 +1,10 @@
 package racingcar.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import racingcar.validate.Validate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static racingcar.validate.Validate.*;
@@ -14,15 +15,9 @@ public class RacingGame {
     private List<Car> winners;
 
     public RacingGame(String participants, String rounds) {
-        validateParticipants(participants);
         validateRounds(rounds);
         this.rounds = Integer.parseInt(rounds);
         this.participants = splitParticipants(participants);
-    }
-
-    private void validateParticipants(String participants) {
-        isBlank(participants);
-        isLetter(participants);
     }
 
     private void validateRounds(String rounds) {
@@ -32,10 +27,19 @@ public class RacingGame {
 
     private List<Car> splitParticipants(String participants) {
         List<Car> temp = new ArrayList<>();
+        validateParticipants(participants);
         for (String name : participants.split(",")) {
             temp.add(new Car(name));
         }
         return temp;
+    }
+
+    private void validateParticipants(String participants) {
+        isDuplicated(participants);
+        for (String participant : participants.split(",")) {
+            isBlank(participant);
+            isLetter(participant);
+        }
     }
 
     public void move() {

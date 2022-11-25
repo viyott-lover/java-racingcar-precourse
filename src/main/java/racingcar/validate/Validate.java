@@ -31,7 +31,7 @@ public class Validate {
 
     public static void isDuplicated(String input) {
         String[] splitedInput = input.split(",");
-        List<String> deDuplicate = Arrays.stream(input.split(","))
+        List<String> deDuplicate = Arrays.stream(splitedInput)
                 .distinct()
                 .collect(Collectors.toList());
         if (deDuplicate.size() != splitedInput.length) {
