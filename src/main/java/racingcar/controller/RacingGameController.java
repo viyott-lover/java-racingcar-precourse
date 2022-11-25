@@ -1,7 +1,10 @@
 package racingcar.controller;
 
 import racingcar.model.RacingGame;
+import racingcar.validate.Task;
 import racingcar.view.View;
+
+import static racingcar.validate.Task.reTryTaskUntilSuccessful;
 
 public class RacingGameController {
     private RacingGame racingGame;
@@ -14,7 +17,7 @@ public class RacingGameController {
     }
 
     private void makeRacingGame() {
-        racingGame = new RacingGame(view.inputParticipants(), view.inputRounds());
+        racingGame = reTryTaskUntilSuccessful(() -> new RacingGame(view.inputParticipants(), view.inputRounds()));
     }
 
     private void playGame() {
