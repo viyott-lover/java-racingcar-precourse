@@ -1,5 +1,7 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class RacingGame {
@@ -9,5 +11,13 @@ public class RacingGame {
 
     RacingGame(int rounds) {
         this.rounds = rounds;
+    }
+
+    public void move() {
+        for (Car participant : participants) {
+            if (Randoms.pickNumberInRange(0, 9) >= 4) {
+                participant.move();
+            }
+        }
     }
 }
