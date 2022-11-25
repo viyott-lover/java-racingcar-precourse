@@ -20,6 +20,16 @@ public class RacingGame {
         this.participants = splitParticipants(participants);
     }
 
+    private void validateParticipants(String participants) {
+        isBlank(participants);
+        isLetter(participants);
+    }
+
+    private void validateRounds(String rounds) {
+        isBlank(rounds);
+        isNumber(rounds);
+    }
+
     private List<Car> splitParticipants(String participants) {
         List<Car> temp = new ArrayList<>();
         for (String name : participants.split(",")) {
@@ -28,27 +38,19 @@ public class RacingGame {
         return temp;
     }
 
-    private void validateRounds(String rounds) {
-        isBlank(rounds);
-        isNumber(rounds);
-    }
-
-    private void validateParticipants(String participants) {
-        isBlank(participants);
-        isLetter(participants);
-    }
-
-    public void playGame() {
-        for (int i = 0; i < rounds; i++) {
-            move();
-        }
-    }
-
     public void move() {
         for (Car participant : participants) {
             if (Randoms.pickNumberInRange(0, 9) >= 4) {
                 participant.move();
             }
         }
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public List<Car> getParticipants() {
+        return participants;
     }
 }
