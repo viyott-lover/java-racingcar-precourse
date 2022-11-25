@@ -20,4 +20,11 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public boolean isSamePosition(int num) {
+        if(position == num) {
+            return true;
+        }
+        return false;
+    }
 }
