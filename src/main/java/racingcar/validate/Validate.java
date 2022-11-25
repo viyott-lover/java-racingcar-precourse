@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 public class Validate {
 
     private static final String BLANK_EXCEPTION = "[ERROR] 입력된 내용이 없습니다.";
-    private static final String NUMBER_EXCEPTION = "[ERROR] 입력이 숫자가 아닙니다.";
-    private static final String LETTER_EXCEPTION = "[ERROR] 입력이 문자가 아닙니다.";
-    private static final String DUPLICATE_EXCEPTION = "[ERROR] 중복되지 않게 입력하세요";
+    private static final String NUMBER_EXCEPTION = "[ERROR] 시도 횟수는 숫자로 입력해주세요.";
+    private static final String LETTER_EXCEPTION = "[ERROR] 경주할 자동차 이름은 문자로 입력해주세요";
+    private static final String DUPLICATE_EXCEPTION = "[ERROR] 경주할 자동차 이름이 중복됩니다. 다시 입력해주세요.";
 
     public static void isBlank(String input) {
         if (input.length() == 0) {
@@ -18,7 +18,7 @@ public class Validate {
     }
 
     public static void isNumber(String input) {
-        if (input.matches("[^0-9]+")) {
+        if (input.matches("\\D+")) {
             throw new IllegalArgumentException(NUMBER_EXCEPTION);
         }
     }
