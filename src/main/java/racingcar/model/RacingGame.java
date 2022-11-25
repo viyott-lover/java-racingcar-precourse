@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.validate.Validate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 import static racingcar.validate.Validate.*;
 
@@ -46,11 +49,26 @@ public class RacingGame {
         }
     }
 
+    public void selectWinners() {
+        int max = participants.stream()
+                .mapToInt(x -> x.getPosition())
+                .max()
+                .getAsInt();
+
+        winners = participants.stream()
+                .filter(e -> e.equals(max))
+                .collect(Collectors.toList());
+    }
+
     public int getRounds() {
         return rounds;
     }
 
     public List<Car> getParticipants() {
         return participants;
+    }
+
+    public List<Car> getWinners() {
+        return winners;
     }
 }
