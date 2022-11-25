@@ -9,8 +9,16 @@ public class RacingGame {
     private List<Car> winners;
     private int rounds;
 
-    RacingGame(int rounds) {
+    public RacingGame(String participants, String rounds) {
+        validateParticipants(participants);
+        validateRounds(rounds);
         this.rounds = rounds;
+    }
+
+    private void validateRounds(String rounds) {
+    }
+
+    private void validateParticipants(String participants) {
     }
 
     public void move() {
