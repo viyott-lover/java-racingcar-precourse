@@ -15,4 +15,10 @@ public class RacingGameController {
         racingGame = new RacingGame(view.inputParticipants(), view.inputRounds());
     }
 
+    public void playGame() {
+        for (int i = 0; i < racingGame.getRounds(); i++) {
+            racingGame.move();
+            view.printResult(racingGame.getParticipants());
+        }
+    }
 }
