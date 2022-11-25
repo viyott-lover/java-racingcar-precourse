@@ -5,20 +5,27 @@ import racingcar.view.View;
 
 public class RacingGameController {
     private RacingGame racingGame;
-    private View view;
+    private final View view = new View();
 
     public void run() {
         makeRacingGame();
+        playGame();
+        printWinners();
     }
 
     private void makeRacingGame() {
         racingGame = new RacingGame(view.inputParticipants(), view.inputRounds());
     }
 
-    public void playGame() {
+    private void playGame() {
         for (int i = 0; i < racingGame.getRounds(); i++) {
             racingGame.move();
             view.printResult(racingGame.getParticipants());
         }
+    }
+
+    private void printWinners() {
+        racingGame.selectWinners();
+        view.printWinners(racingGame.getWinners());
     }
 }
