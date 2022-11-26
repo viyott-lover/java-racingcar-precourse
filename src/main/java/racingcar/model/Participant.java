@@ -11,7 +11,6 @@ public class Participant {
     private List<Car> participants;
 
     public Participant(String participants) {
-        isDuplicated(participants);
         this.participants = splitParticipants(participants);
     }
 
@@ -29,7 +28,6 @@ public class Participant {
         for (String participant : participants.split(",")) {
             isBlank(participant);
             isLetter(participant);
-            // 5글자인지
             isFiveCharsOrLess(participant);
         }
     }
