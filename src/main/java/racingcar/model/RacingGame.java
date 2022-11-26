@@ -10,40 +10,17 @@ import java.util.stream.Collectors;
 import static racingcar.validate.Validate.*;
 
 public class RacingGame {
-    private final List<Car> participants;
-    private final int rounds;
+    private final Participant participants;
+    private final Round round;
     private List<Car> winners;
 
-    public RacingGame(String participants, String rounds) {
-        validateRounds(rounds);
-        this.rounds = Integer.parseInt(rounds);
-        this.participants = splitParticipants(participants);
-    }
-
-    private void validateRounds(String rounds) {
-        isBlank(rounds);
-        isNumber(rounds);
-    }
-
-    private List<Car> splitParticipants(String participants) {
-        List<Car> temp = new ArrayList<>();
-        validateParticipants(participants);
-        for (String name : participants.split(",")) {
-            temp.add(new Car(name.trim()));
-        }
-        return temp;
-    }
-
-    private void validateParticipants(String participants) {
-        isDuplicated(participants);
-        for (String participant : participants.split(",")) {
-            isBlank(participant);
-            isLetter(participant);
-        }
+    public RacingGame(Participant participants, Round round) {
+        this.participants = participants;
+        this.round = round;
     }
 
     public void move() {
-        for (Car participant : participants) {
+        for (Car participant : participants.getParticipants()) {
             if (Randoms.pickNumberInRange(0, 9) >= 4) {
                 participant.move();
             }
@@ -51,7 +28,7 @@ public class RacingGame {
     }
 
     public void selectWinners() {
-        winners = new ArrayList<>(participants);
+        winners = new ArrayList<>(participants.getParticipants());
         Car winningCar = winners.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
                 .get();
@@ -61,12 +38,12 @@ public class RacingGame {
 
     }
 
-    public int getRounds() {
-        return rounds;
+    public int getRound() {
+        return round.getRound();
     }
 
     public List<Car> getParticipants() {
-        return participants;
+        return participants.getParticipants();
     }
 
     public List<Car> getWinners() {
