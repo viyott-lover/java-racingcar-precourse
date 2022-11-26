@@ -7,7 +7,7 @@ import static racingcar.validate.Validate.*;
 public class Round {
     private int round;
 
-    Round(String round) {
+    public Round(String round) {
         validateRound(round);
         this.round = Integer.parseInt(round);
     }

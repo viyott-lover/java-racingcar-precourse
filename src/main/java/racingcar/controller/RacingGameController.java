@@ -1,7 +1,8 @@
 package racingcar.controller;
 
+import racingcar.model.Participant;
 import racingcar.model.RacingGame;
-import racingcar.validate.Task;
+import racingcar.model.Round;
 import racingcar.view.View;
 
 import static racingcar.validate.Task.reTryTaskUntilSuccessful;
@@ -17,11 +18,13 @@ public class RacingGameController {
     }
 
     private void makeRacingGame() {
-        racingGame = reTryTaskUntilSuccessful(() -> new RacingGame(view.inputParticipants(), view.inputRounds()));
+        Participant participants = reTryTaskUntilSuccessful(() -> new Participant(view.inputParticipants()));
+        Round round = reTryTaskUntilSuccessful(() -> new Round(view.inputRounds()));
+        racingGame = new RacingGame(participants, round);
     }
 
     private void playGame() {
-        for (int i = 0; i < racingGame.getRounds(); i++) {
+        for (int i = 0; i < racingGame.getRound(); i++) {
             racingGame.move();
             view.printResult(racingGame.getParticipants());
         }

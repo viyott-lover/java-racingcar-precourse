@@ -10,7 +10,7 @@ import static racingcar.validate.Validate.*;
 public class Participant {
     private List<Car> participants;
 
-    Participant(String participants) {
+    public Participant(String participants) {
         isDuplicated(participants);
         this.participants = splitParticipants(participants);
     }
