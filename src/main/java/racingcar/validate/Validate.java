@@ -10,6 +10,7 @@ public class Validate {
     private static final String NUMBER_EXCEPTION = "[ERROR] 시도 횟수는 숫자로 입력해주세요.";
     private static final String LETTER_EXCEPTION = "[ERROR] 경주할 자동차 이름은 문자로 입력해주세요";
     private static final String DUPLICATE_EXCEPTION = "[ERROR] 경주할 자동차 이름이 중복됩니다. 다시 입력해주세요.";
+    private static final String MORE_THAN_FIVE_CHARS_EXCEPTION = "[ERROR] 자동차 이름은 5글자 이하로 입력해주세요.";
 
     public static void isBlank(String input) {
         if (input.length() == 0) {
@@ -18,7 +19,7 @@ public class Validate {
     }
 
     public static void isNumber(String input) {
-        if (input.matches("\\D+")) {
+        if (input.matches("^\\D+$")) {
             throw new IllegalArgumentException(NUMBER_EXCEPTION);
         }
     }
@@ -26,6 +27,12 @@ public class Validate {
     public static void isLetter(String input) {
         if (input.matches("[^a-zA-Z]+")) {
             throw new IllegalArgumentException(LETTER_EXCEPTION);
+        }
+    }
+
+    public static void isFiveCharsOrLess(String input) {
+        if (input.length() > 5) {
+            throw new IllegalArgumentException(MORE_THAN_FIVE_CHARS_EXCEPTION);
         }
     }
 
